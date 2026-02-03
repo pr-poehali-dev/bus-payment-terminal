@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-type Screen = 'main' | 'payment' | 'success' | 'routes' | 'history' | 'balance';
+type Screen = 'main' | 'payment' | 'success' | 'declined' | 'routes' | 'history' | 'balance';
 
 interface Trip {
   id: string;
@@ -37,6 +37,15 @@ const Index = () => {
   const handleNFCTouch = () => {
     setIsScanning(true);
     setTimeout(() => {
+      if (balance < 45) {
+        setScreen('declined');
+        setIsScanning(false);
+        setTimeout(() => {
+          setScreen('main');
+        }, 3000);
+        return;
+      }
+
       const newTrip: Trip = {
         id: Date.now().toString(),
         route: `${selectedRoute.type === 'bus' ? 'Автобус' : 'Троллейбус'} №${selectedRoute.number}`,
@@ -57,6 +66,33 @@ const Index = () => {
   const handleTopUp = (amount: number) => {
     setBalance(balance + amount);
   };
+
+  if (screen === 'declined') {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center p-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-transparent pointer-events-none" />
+        
+        <div className="text-center z-10 animate-scale-in">
+          <div className="mb-8 relative">
+            <div className="w-32 h-32 mx-auto bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center shadow-2xl shadow-red-500/50">
+              <Icon name="X" size={64} className="text-white" />
+            </div>
+            <div className="absolute inset-0 w-32 h-32 mx-auto bg-red-500 rounded-full opacity-20 ripple" />
+          </div>
+          
+          <h1 className="text-5xl font-bold text-white mb-4">Отказано</h1>
+          <p className="text-3xl text-red-500 font-medium mb-2">Недостаточно средств</p>
+          <p className="text-xl text-gray-400 mb-2">Пополните баланс</p>
+          <p className="text-lg text-gray-500">Текущий баланс: {balance} ₽</p>
+          <p className="text-sm text-gray-600 mt-4">Необходимо: 45 ₽</p>
+        </div>
+
+        <div className="absolute bottom-4 left-4 text-xs text-gray-600 z-10">
+          by @bortexchannel
+        </div>
+      </div>
+    );
+  }
 
   if (screen === 'success') {
     return (
