@@ -332,45 +332,15 @@ const Index = () => {
         <p className="text-lg text-gray-400">Городской транспорт</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 w-full max-w-md z-10">
-        <Button
-          onClick={() => setScreen('routes')}
-          className="h-40 bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] hover:from-[#2a2a2a] hover:to-[#3a3a3a] border-2 border-[#2a2a2a] hover:border-[#0EA5E9] rounded-2xl transition-all"
-        >
-          <div className="text-center">
-            <Icon name="Bus" size={48} className="text-[#0EA5E9] mx-auto mb-3" />
-            <p className="text-xl font-bold text-white">Маршруты</p>
-          </div>
-        </Button>
-
-        <Button
-          onClick={() => setScreen('balance')}
-          className="h-40 bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] hover:from-[#2a2a2a] hover:to-[#3a3a3a] border-2 border-[#2a2a2a] hover:border-[#0EA5E9] rounded-2xl transition-all"
-        >
-          <div className="text-center">
-            <Icon name="Wallet" size={48} className="text-[#0EA5E9] mx-auto mb-3" />
-            <p className="text-xl font-bold text-white mb-1">Баланс</p>
-            <p className="text-sm text-gray-400">{balance} ₽</p>
-          </div>
-        </Button>
-
-        <Button
-          onClick={() => setScreen('history')}
-          className="h-40 bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] hover:from-[#2a2a2a] hover:to-[#3a3a3a] border-2 border-[#2a2a2a] hover:border-[#0EA5E9] rounded-2xl transition-all"
-        >
-          <div className="text-center">
-            <Icon name="History" size={48} className="text-[#0EA5E9] mx-auto mb-3" />
-            <p className="text-xl font-bold text-white">История</p>
-          </div>
-        </Button>
-
+      <div className="w-full max-w-md z-10">
         <Button
           onClick={() => setScreen('payment')}
-          className="h-40 bg-gradient-to-br from-[#0EA5E9] to-[#0284c7] hover:from-[#0284c7] hover:to-[#0369a1] rounded-2xl transition-all shadow-xl shadow-[#0EA5E9]/30"
+          className="w-full h-56 bg-gradient-to-br from-[#0EA5E9] to-[#0284c7] hover:from-[#0284c7] hover:to-[#0369a1] rounded-3xl transition-all shadow-2xl shadow-[#0EA5E9]/40 hover:shadow-[#0EA5E9]/60 hover:scale-105"
         >
           <div className="text-center">
-            <Icon name="CreditCard" size={48} className="text-white mx-auto mb-3" />
-            <p className="text-xl font-bold text-white">Оплатить</p>
+            <Icon name="CreditCard" size={80} className="text-white mx-auto mb-4" />
+            <p className="text-4xl font-bold text-white">Оплатить проезд</p>
+            <p className="text-xl text-white/80 mt-2">45 ₽</p>
           </div>
         </Button>
       </div>
